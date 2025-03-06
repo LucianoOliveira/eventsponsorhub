@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block title %}{{ config.TITLE }}{% endblock %} 
+{% block content %}
+
+<!-- testing -->
+<div class="row">
+    <h5 class="card-title">Events</h5>    
+</div>
+<!-- end testing -->
+
+
+<div class="row justify-content-center">
+    {% for event in result %}
+    <div class="col-10 col-sm-5 col-md-4 col-lg-3">
+      <a href="{{ url_for('views.detail_event', event_id=event.ev_id) }}" class="card profile-card-2">
+        <div class="card-img-block">
+          <img class="img-fluid" src="{{ url_for('views.display_event_main_image', eventID=event.ev_id ) }}" alt="Card image cap">
+        </div>
+        <div class="card-body pt-5">
+          <img src="{{ url_for('views.display_user_image', userID=event.ev_user_id ) }}" alt="profile-image" class="profile">
+          <h5 class="card-title">{{ event.ev_title }}</h5>
+          <h6 class="card-subtitle">{{ event.ev_location }}</h6>
+          <p></p>
+          <p class="card-text">Date: {{ event.ev_date.strftime('%Y-%m-%d') if event.ev_date else 'N/A' }}</p>
+          <p class="card-text">Attendance: {{ event.ev_expected_attendance }}</p>
+          <!-- <p class="card-text">{{ event.ev_sold_package_count }} / {{ event.ev_package_count }}</p> -->
+          <!-- <div class="icon-block">
+            <a href="javascript:void();"><i class="fa fa-facebook bg-facebook text-white"></i></a>
+            <a href="javascript:void();"> <i class="fa fa-twitter bg-twitter text-white"></i></a>
+            <a href="javascript:void();"> <i class="fa fa-google-plus bg-google-plus text-white"></i></a>
+          </div> -->
+        </div>
+      </a>
+    </div>
+    {% endfor %} 
+  </div>
+
+
+{% endblock %}

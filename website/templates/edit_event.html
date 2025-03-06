@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row gutters-sm">
+    <div class="container-fluid">
+        <div class="col-lg-12">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Event
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="card-title">Edit Event</div>
+                            <hr>
+                            <form action="{{ url_for('views.edit_event', event_id=event.ev_id) }}" method="post" enctype="multipart/form-data">
+                                <div class="row gutters-sm">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-4 mb-3">
+                                                <!-- General data -->
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex flex-column align-items-center text-center">
+                                                            <img src="{{ url_for('views.display_event_main_image', eventID=event.ev_id ) }}" alt="{{ event.ev_title }}" class="rounded-circle" width="150" id="event_main_photo_img" style="cursor: pointer;">
+                                                            <div class="mt-3">
+                                                                <h4>{{ event.ev_title }}</h4>
+                                                            </div>
+                                                            <input type="file" class="form-control form-control-rounded" id="ev_main_photo" name="ev_main_photo" accept="image/*" placeholder="Change Main Photo">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Secondary photos -->
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex flex-column align-items-center text-center">
+                                                            <h5 class="card-title">Secondary Photos</h5>
+                                                            <div class="row">
+                                                                {% for photo in secondary_photos %}
+                                                                <div class="col-md-4 mb-3">
+                                                                    <img src="{{ url_for('static', filename='photos/01_events/' ~ event.ev_id ~ '/secondary/' ~ photo) }}" alt="Secondary Photo" class="img-thumbnail" style="cursor: pointer;" onclick="showImage(this.src)">
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                            <div class="mt-3">
+                                                                <img id="largeImage" src="" alt="" class="img-fluid">
+                                                            </div>
+                                                            <input type="file" class="form-control form-control-rounded" id="ev_secondary_photos" name="ev_secondary_photos" multiple accept="image/*">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <!-- Full data -->
+                                                <div class="card mb-3">
+                                                    <div class="card-body">
+                                                        <!-- <h5 class="card-title">Edit Event</h5> -->
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="title">Title</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control form-control-rounded" id="ev_title" placeholder="Title of Event" name="ev_title" value="{{ event.ev_title }}">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="description">Description</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <textarea class="form-control form-control-rounded" id="ev_description" placeholder="Description of Event" name="ev_description" rows="5" value="">{{ event.ev_description }}</textarea>
+                                                            </div>
+                                                        </div>  
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="location">Location</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control form-control-rounded" id="ev_location" placeholder="Place of Event" name="ev_location" value="{{ event.ev_location }}">
+                                                            </div>
+                                                        </div> 
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="ev_date">Event Date</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <input type="date" class="form-control form-control-rounded" id="ev_date" name="ev_date" value="{{ event.ev_date }}">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="ev_expected_attendance">Expected Attendance</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <input type="number" class="form-control form-control-rounded" id="ev_expected_attendance" placeholder="Expected Attendance" name="ev_expected_attendance" value="{{ event.ev_expected_attendance }}">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="ev_instagram">Instagram</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control form-control-rounded" id="ev_instagram" placeholder="Instagram Link" name="ev_instagram" value="{{ event.ev_instagram }}">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="ev_facebook">Facebook</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control form-control-rounded" id="ev_facebook" placeholder="Facebook Link" name="ev_facebook" value="{{ event.ev_facebook }}">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="ev_youtube">YouTube</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control form-control-rounded" id="ev_youtube" placeholder="YouTube Link" name="ev_youtube" value="{{ event.ev_youtube }}">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label for="ev_tiktok">TikTok</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control form-control-rounded" id="ev_tiktok" placeholder="TikTok Link" name="ev_tiktok" value="{{ event.ev_tiktok }}">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-12 d-flex justify-content-between">
+                                                                <div class="form-group">
+                                                                    <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-save"></i> Edit Event</button>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <button type="submit" formaction="{{ url_for('views.delete_event', event_id=event.ev_id) }}" formmethod="post" class="btn btn-danger btn-round px-5"><i class="icon-trash"></i> Delete Event</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Packages
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="card-title">Manage Packages</div>
+                            <hr>
+                            <div class="card-title">
+                                <a href="{{ url_for('views.create_package', event_id=event.ev_id) }}" class="btn btn-primary">Create Package</a>
+                            </div>
+                            <hr>
+                            <!-- show packages of this event -->
+                            <div class="row justify-content-center">
+                                {% for package in result_packages %}
+                                <div class="col-10 col-sm-5 col-md-4 col-lg-3">
+                                    <a href="{% if user.us_id == package.pk_user_id %}{{ url_for('views.edit_package', package_id=package.pk_id) }}{% else %}# {% endif %}" class="card profile-card-2">
+                                        <div class="card-img-block">
+                                            <img class="img-fluid" src="{{ url_for('views.display_package_main_image', eventID=event.ev_id, packageID=package.pk_id ) }}" alt="Card image cap">
+                                        </div>
+                                        <div class="card-body pt-5">
+                                            <img src="{{ url_for('views.display_user_image', userID=package.pk_user_id ) }}" alt="profile-image" class="profile">
+                                            <h5 class="card-title">{{ package.pk_title }}</h5>
+                                            <h6 class="card-subtitle">{{ package.pk_description }}</h6>
+                                            <p></p>
+                                            <p class="card-text">Price: {{ package.pk_price }}</p>
+                                            <p class="card-text">Allow Requests: {{ package.pk_allow_requests }}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %} 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+function showImage(src) {
+    document.getElementById('largeImage').src = src;
+}
+</script>
+{% endblock %}

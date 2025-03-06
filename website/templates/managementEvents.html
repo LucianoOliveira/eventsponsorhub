@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %}{{ config.TITLE }}{% endblock %} 
+{% block content %}
+
+
+<!-- testing -->
+<div class="row">
+    <h5 class="card-title">Management Events</h5>
+</div>
+<div class="row">
+    {% if user.us_is_seller %}
+    <a href="{{ url_for('views.create_event') }}" class="btn btn-primary">Create Event</a>
+    {% endif %}
+</div>
+<br>
+<!-- end testing -->
+
+
+
+<!-- show events -->
+<div class="row justify-content-center">
+    {% for event in result %}
+    <div class="col-10 col-sm-5 col-md-4 col-lg-3">
+    <a href="{% if user.us_id == event.ev_user_id %}{{ url_for('views.edit_event', event_id=event.ev_id) }}{% else %}# {% endif %}" class="card profile-card-2">
+        <div class="card-img-block">
+            <img class="img-fluid" src="{{ url_for('views.display_event_main_image', eventID=event.ev_id ) }}" alt="Card image cap">
+        </div>
+        <div class="card-body pt-5">
+            <img src="{{ url_for('views.display_user_image', userID=event.ev_user_id ) }}" alt="profile-image" class="profile">
+            <h5 class="card-title">{{ event.ev_title }}</h5>
+            <h6 class="card-subtitle">{{ event.ev_location }}</h6>
+            <p></p>
+            <p class="card-text">Date: {{ event.ev_date.strftime('%Y-%m-%d') if event.ev_date else 'N/A' }}</p>
+            <p class="card-text">Attendance: {{ event.ev_expected_attendance }}</p>
+        </div>
+    </a>
+    </div>
+    {% endfor %} 
+</div>
+
+{% endblock %}

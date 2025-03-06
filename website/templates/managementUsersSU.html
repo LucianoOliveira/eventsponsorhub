@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block title %}{{ config.TITLE }}{% endblock %} 
+{% block content %}
+
+<div class="row">
+    <h5 class="card-title">Management User as SuperUser</h5>    
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Users</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Active</th>
+                                <th scope="col">Buyer</th>
+                                <th scope="col">Seller</th>
+                                <th scope="col">Admin</th>
+                                <th scope="col">SuperUser</th>
+                                <!-- <th scope="col">Age</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for r_user in result %}
+                            <tr>
+                                <td onclick="window.location.href='{{ url_for('views.editUser', user_id=r_user.us_id) }}';">
+                                    <img src="{{ url_for('views.display_user_image', userID=r_user.us_id ) }}" 
+                                        alt="{{ r_user.us_name }}" class="rounded-circle" width="40">    
+                                    {{ display_short_name(r_user.us_name) }}
+                                </td>
+                                <td onclick="window.location.href='{{ url_for('views.editUser', user_id=r_user.us_id) }}';">{% if r_user.us_is_active %}<i class="zmdi zmdi-check-square"></i>{% else %}<i class="zmdi zmdi-square-o"></i>{% endif %}</td>
+                                <td onclick="window.location.href='{{ url_for('views.editUser', user_id=r_user.us_id) }}';">{% if r_user.us_is_buyer %}<i class="zmdi zmdi-check-square"></i>{% else %}<i class="zmdi zmdi-square-o"></i>{% endif %}</td>
+                                <td onclick="window.location.href='{{ url_for('views.editUser', user_id=r_user.us_id) }}';">{% if r_user.us_is_seller %}<i class="zmdi zmdi-check-square"></i>{% else %}<i class="zmdi zmdi-square-o"></i>{% endif %}</td>
+                                <td onclick="window.location.href='{{ url_for('views.editUser', user_id=r_user.us_id) }}';">{% if r_user.us_is_admin %}<i class="zmdi zmdi-check-square"></i>{% else %}<i class="zmdi zmdi-square-o"></i>{% endif %}</td>
+                                <td onclick="window.location.href='{{ url_for('views.editUser', user_id=r_user.us_id) }}';">{% if r_user.us_is_superuser %}<i class="zmdi zmdi-check-square"></i>{% else %}<i class="zmdi zmdi-square-o"></i>{% endif %}</td>
+                                <!-- <td onclick="window.location.href='{{ url_for('views.editUser', user_id=r_user.us_id) }}';">{{ calculate_age(r_user.us_birthday) }}</td> -->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{{ url_for('views.create_event') }}" method="post" enctype="multipart/form-data">
+    <div class="col-md-12">
+        <!-- Full data -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Create Event</h5>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control form-control-rounded" id="title" placeholder="Title of Event" name="title" value="">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="description">Description</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <textarea class="form-control form-control-rounded" id="description" placeholder="Description of Event" name="description" rows="5"></textarea>
+                    </div>
+                </div>  
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="location">Location</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control form-control-rounded" id="location" placeholder="Place of Event" name="location" value="">
+                    </div>
+                </div> 
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="ev_date">Event Date</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control form-control-rounded" id="ev_date" name="ev_date" value="">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="ev_expected_attendance">Expected Attendance</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control form-control-rounded" id="ev_expected_attendance" placeholder="Expected Attendance" name="ev_expected_attendance" value="">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="ev_instagram">Instagram</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control form-control-rounded" id="ev_instagram" placeholder="Instagram Link" name="ev_instagram" value="">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="ev_facebook">Facebook</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control form-control-rounded" id="ev_facebook" placeholder="Facebook Link" name="ev_facebook" value="">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="ev_youtube">YouTube</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control form-control-rounded" id="ev_youtube" placeholder="YouTube Link" name="ev_youtube" value="">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="ev_tiktok">TikTok</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control form-control-rounded" id="ev_tiktok" placeholder="TikTok Link" name="ev_tiktok" value="">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="ev_main_photo">Main Event Photo</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control form-control-rounded" id="ev_main_photo" name="ev_main_photo" accept="image/*">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="ev_secondary_photos">Secondary Event Photos</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control form-control-rounded" id="ev_secondary_photos" name="ev_secondary_photos" multiple accept="image/*">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-save"></i> Create Event</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

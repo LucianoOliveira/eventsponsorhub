@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row gutters-sm">
+    <div class="container-fluid">
+        <div class="col-lg-12">
+            <div class="card-body">
+                <div class="card-title">Edit Package</div>
+                <hr>
+                <form action="{{ url_for('views.edit_package', package_id=package.pk_id) }}" method="post" enctype="multipart/form-data">
+                    <div class="row gutters-sm">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <!-- General data -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-column align-items-center text-center">
+                                                <img src="{{ url_for('views.display_package_main_image', eventID=package.pk_event_id, packageID=package.pk_id ) }}" alt="{{ package.pk_title }}" class="rounded-circle" width="150" id="package_main_photo_img" style="cursor: pointer;">
+                                                <div class="mt-3">
+                                                    <h4>{{ package.pk_title }}</h4>
+                                                </div>
+                                                <input type="file" class="form-control form-control-rounded" id="pk_main_photo" name="pk_main_photo" accept="image/*" placeholder="Change Main Photo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Secondary photos -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-column align-items-center text-center">
+                                                <h5 class="card-title">Secondary Photos</h5>
+                                                <div class="row">
+                                                    {% for photo in secondary_photos %}
+                                                    <div class="col-md-4 mb-3">
+                                                        <img src="{{ url_for('static', filename='photos/01_events/' ~ package.pk_event_id ~ '/packages/' ~ package.pk_id ~ '/secondary/' ~ photo) }}" alt="Secondary Photo" class="img-thumbnail" style="cursor: pointer;" onclick="showImage(this.src)">
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="mt-3">
+                                                    <img id="largeImage" src="" alt="" class="img-fluid">
+                                                </div>
+                                                <input type="file" class="form-control form-control-rounded" id="pk_secondary_photos" name="pk_secondary_photos" multiple accept="image/*">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <!-- Full data -->
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <!-- <h5 class="card-title">Edit Package</h5> -->
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="title">Title</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control form-control-rounded" id="pk_title" placeholder="Title of Package" name="pk_title" value="{{ package.pk_title }}">
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="description">Description</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <textarea class="form-control form-control-rounded" id="pk_description" placeholder="Description of Package" name="pk_description" rows="5" value="">{{ package.pk_description }}</textarea>
+                                                </div>
+                                            </div>  
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="price">Price</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control form-control-rounded" id="pk_price" placeholder="Price of Package" name="pk_price" value="{{ package.pk_price }}">
+                                                </div>
+                                            </div> 
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="pk_allow_requests">Allow Requests</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="checkbox" class="form-control form-control-rounded" id="pk_allow_requests" name="pk_allow_requests" {% if package.pk_allow_requests %}checked{% endif %}>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-12 d-flex justify-content-between">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-save"></i> Edit Package</button>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" formaction="{{ url_for('views.delete_package', package_id=package.pk_id) }}" formmethod="post" class="btn btn-danger btn-round px-5"><i class="icon-trash"></i> Delete Package</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>    
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+function showImage(src) {
+    document.getElementById('largeImage').src = src;
+}
+</script>
+{% endblock %}

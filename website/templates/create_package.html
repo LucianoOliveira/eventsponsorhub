@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{{ url_for('views.create_package', event_id=event_id) }}" method="post" enctype="multipart/form-data">
+    <div class="col-md-12">
+        <!-- Full data -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Create Package</h5>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control form-control-rounded" id="title" placeholder="Title of Package" name="title" required>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="description">Description</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <textarea class="form-control form-control-rounded" id="description" placeholder="Description of Package" name="description" rows="5" required></textarea>
+                    </div>
+                </div>  
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="price">Price</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control form-control-rounded" id="price" placeholder="Price of Package" name="price" step="0.01" required>
+                    </div>
+                </div> 
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="pk_main_photo">Main Package Photo</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control form-control-rounded" id="pk_main_photo" name="pk_main_photo" accept="image/*">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="pk_secondary_photos">Secondary Package Photos</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control form-control-rounded" id="pk_secondary_photos" name="pk_secondary_photos" multiple accept="image/*">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="allow_requests">Allow Requests</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="checkbox" id="allow_requests" name="allow_requests">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-save"></i> Create Package</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

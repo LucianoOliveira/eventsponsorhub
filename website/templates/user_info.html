@@ -1,0 +1,158 @@
+{% extends "base.html" %} {% block title %}{{ config.TITLE }}{% endblock %} 
+{% block content %}
+<!-- WPT -->
+<link href="../static/css/swiper-bundle.min.css" rel="stylesheet"/>
+<!-- Show front page of gameday -->
+<!-- Show every detail of a user -->
+
+<!-- Show every detail of a user Row -->
+
+<form action="{{ url_for('views.updateUser', userID=p_user.us_id ) }}" method="post" enctype="multipart/form-data">
+    <div class="row gutters-sm">
+        <div class="col-md-4 mb-3">
+            <!-- General data -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <img src="{{ url_for('views.display_user_image', userID=p_user.us_id ) }}" alt="{{ p_user.us_name }}" class="rounded-circle" width="150" id="user_photo_img" style="cursor: pointer;">
+                        <input type="file" class="form-control form-control-rounded" id="user_photo" placeholder="Photo" name="user_photo" style="display: none;">
+                        <div class="mt-3">
+                            <h4>{{ p_user.us_name }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <!-- Full data -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="user_name">Name</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-rounded" id="user_name" placeholder="{{ p_user.us_name }}" name="user_name" value="{{ p_user.us_name }}">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="user_email">Email</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control form-control-rounded" id="us_email" placeholder="{{ p_user.us_email }}" name="user_email" value="{{ p_user.us_email }}" readonly>
+                        </div>
+                    </div>  
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="user_birthday">Birthday</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control form-control-rounded" id="user_birthday" placeholder="{{ p_user.us_birthday }}" name="user_birthday" value="{{ p_user.us_birthday }}">
+                        </div>
+                    </div> 
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="user_active">Active</label>
+                        </div>
+                        <div class="col-sm-3 icheck-material-white">
+                            <input type="checkbox" id="user_active" name="user_active" {% if p_user.us_is_active %}checked{% endif %} >
+                            <label for="user_active"></label>
+                        </div>
+                    </div> 
+                    <div class="row" style="display: none;">
+                        <div class="col-sm-3">
+                            <label for="user_buyer">Buyer</label>
+                        </div>
+                        <div class="col-sm-3 icheck-material-white">
+                            <input type="checkbox" id="user_buyer" name="user_buyer" {% if p_user.us_is_buyer %}checked{% endif %}>
+                            <label for="user_buyer"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="user_buyer2">Buyer</label>
+                        </div>
+                        <div class="col-sm-3 icheck-material-white">
+                            <input type="checkbox" id="user_buyer2" name="user_buyer2" {% if user.us_is_buyer %}checked{% endif %} disabled>
+                            <label for="user_buyer2"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="user_seller">Seller</label>
+                        </div>
+                        <div class="col-sm-3 icheck-material-white">
+                            <input type="checkbox" id="user_seller" name="user_seller" {% if p_user.us_is_seller %}checked{% endif %} >
+                            <label for="user_seller"></label>
+                        </div>
+                    </div>  
+                    {% if user.us_is_superuser and user.us_id != p_user.us_id %}
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="user_admin">Admin</label>
+                        </div>
+                        <div class="col-sm-3 icheck-material-white">
+                            <input type="checkbox" id="user_admin" name="user_admin" {% if p_user.us_is_admin %}checked{% endif %} >
+                            <label for="user_admin"></label>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="user_superuser">SuperUser</label>
+                        </div>
+                        <div class="col-sm-3 icheck-material-white">
+                            <input type="checkbox" id="user_superuser" name="user_superuser" {% if p_user.us_is_superuser %}checked{% endif %} >
+                            <label for="user_superuser"></label>
+                        </div>
+                    </div>
+                    {% else %}
+                        <div class="row" style="display: none;">
+                            <div class="col-sm-3">
+                                <label for="user_admin">Admin</label>
+                            </div>
+                            <div class="col-sm-3 icheck-material-white">
+                                <input type="checkbox" id="user_admin" name="user_admin" {% if p_user.us_is_admin %}checked{% endif %} >
+                                <label for="user_admin"></label>
+                            </div>
+                        </div> 
+                        <div class="row" style="display: none;">
+                            <div class="col-sm-3">
+                                <label for="user_superuser">SuperUser</label>
+                            </div>
+                            <div class="col-sm-3 icheck-material-white">
+                                <input type="checkbox" id="user_superuser" name="user_superuser" {% if p_user.us_is_superuser %}checked{% endif %} >
+                                <label for="user_superuser"></label>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-save"></i> Edit User</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!--END ROW -->
+
+
+<!-- Chart js -->
+<script src="../static/plugins/Chart.js/Chart.min.js"></script>
+<!-- Index js -->
+<script src="../static/js/index.js"></script>
+<script>
+    document.getElementById('user_photo_img').addEventListener('click', function() {
+        document.getElementById('user_photo').click();
+    });
+</script>
+{% endblock %}

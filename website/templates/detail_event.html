@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row gutters-sm">
+    <div class="container-fluid">
+        <div class="col-lg-12">
+            {% if result_packages %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">Existing Packages</div>
+                    <hr>
+                    <div class="row justify-content-center">
+                        {% for package in result_packages %}
+                        <div class="col-10 col-sm-5 col-md-4 col-lg-3">
+                            <a href="{{ url_for('views.detail_package', package_id=package.pk_id) }}" class="card profile-card-2">
+                                <div class="card-img-block">
+                                    <img class="img-fluid" src="{{ url_for('views.display_package_main_image', eventID=event.ev_id, packageID=package.pk_id ) }}" alt="Card image cap">
+                                </div>
+                                <div class="card-body pt-5">
+                                    <img src="{{ url_for('views.display_event_main_image', eventID=package.pk_event_id ) }}" alt="profile-image" class="profile">
+                                    <h5 class="card-title">{{ package.pk_title }}</h5>
+                                    <h6 class="card-subtitle">{{ package.pk_description }}</h6>
+                                    <p></p>
+                                    <p class="card-text">Price: {{ package.pk_price }} €</p>
+                                    <p class="card-text">Allow Requests: {% if package.pk_allow_requests %}Yes{% else %}No{% endif %}</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">Event Details</div>
+                    <hr>
+                    <div class="row gutters-sm">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <!-- General data -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-column align-items-center text-center">
+                                                <img src="{{ url_for('views.display_event_main_image', eventID=event.ev_id ) }}" alt="{{ event.ev_title }}" class="rounded-circle" width="150" id="event_main_photo_img">
+                                                <div class="mt-3">
+                                                    <h4>{{ event.ev_title }}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Secondary photos -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-column align-items-center text-center">
+                                                <h5 class="card-title">Secondary Photos</h5>
+                                                <div class="row">
+                                                    {% for photo in secondary_photos %}
+                                                    <div class="col-md-4 mb-3">
+                                                        <img src="{{ url_for('static', filename='photos/01_events/' ~ event.ev_id ~ '/secondary/' ~ photo) }}" alt="Secondary Photo" class="img-thumbnail" style="cursor: pointer;" onclick="showImage(this.src)">
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="mt-3">
+                                                    <img id="largeImage" src="" alt="" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <!-- Full data -->
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="title">Title</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="">{{ event.ev_title }}</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="description">Description</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="">{{ event.ev_description | safe }}</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="location">Location</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="">{{ event.ev_location }}</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="ev_date">Event Date</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="">{{ event.ev_date }}</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="ev_expected_attendance">Expected Attendance</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="">{{ event.ev_expected_attendance }} px</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="ev_instagram">Instagram</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    {% if 'http' in event.ev_instagram %}
+                                                        <p class=""><a href="{{ event.ev_instagram }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></p>
+                                                    {% else %}
+                                                        <p class="">{{ event.ev_instagram }}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="ev_facebook">Facebook</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    {% if 'http' in event.ev_facebook %}
+                                                        <p class=""><a href="{{ event.ev_facebook }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i>acebook</a></p>
+                                                    {% else %}
+                                                        <p class="">{{ event.ev_facebook }}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="ev_youtube">YouTube</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="">{{ event.ev_youtube }}</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label for="ev_tiktok">TikTok</label>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="">{{ event.ev_tiktok }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showImage(src) {
+    document.getElementById('largeImage').src = src;
+}
+</script>
+{% endblock %}

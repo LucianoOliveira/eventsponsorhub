@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row gutters-sm">
+    <div class="container-fluid">
+        <div class="col-lg-12">
+            <div class="card-body">
+                <div class="card-title">Package Details</div>
+                <hr>
+                <div class="row gutters-sm">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <!-- General data -->
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-column align-items-center text-center">
+                                            <img src="{{ url_for('views.display_package_main_image', eventID=package.pk_event_id, packageID=package.pk_id ) }}" alt="{{ package.pk_title }}" class="rounded-circle" width="150" id="package_main_photo_img">
+                                            <div class="mt-3">
+                                                <h4>{{ package.pk_title }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Secondary photos -->
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-column align-items-center text-center">
+                                            <h5 class="card-title">Secondary Photos</h5>
+                                            <div class="row">
+                                                {% for photo in secondary_photos %}
+                                                <div class="col-md-4 mb-3">
+                                                    <img src="{{ url_for('static', filename='photos/01_events/' ~ package.pk_event_id ~ '/packages/' ~ package.pk_id ~ '/secondary/' ~ photo) }}" alt="Secondary Photo" class="img-thumbnail" style="cursor: pointer;" onclick="showImage(this.src)">
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="mt-3">
+                                                <img id="largeImage" src="" alt="" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <!-- Full data -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <label for="title">Title</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="">{{ package.pk_title }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <label for="description">Description</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="">{{ package.pk_description | safe }}</p>
+                                            </div>
+                                        </div>  
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <label for="price">Price</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="">{{ package.pk_price }} €</p>
+                                            </div>
+                                        </div> 
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <label for="pk_allow_requests">Allow Requests</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="">{% if package.pk_allow_requests %}Yes{% else %}No{% endif %}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <a href="{{ url_for('views.add_to_cart', package_id=package.pk_id) }}" class="btn btn-primary">Add to Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>
+
+<script>
+function showImage(src) {
+    document.getElementById('largeImage').src = src;
+}
+</script>
+{% endblock %}
