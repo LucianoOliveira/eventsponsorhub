@@ -1,0 +1,358 @@
+{
+  "Navigation": {
+    "en": "Navigation",
+    "pt": "Navegação"
+  },
+  "Events": {
+    "en": "Events",
+    "pt": "Eventos"
+  },
+  "Management": {
+    "en": "Management",
+    "pt": "Gestão"
+  },
+  "Manage Events": {
+    "en": "Manage Events",
+    "pt": "Gerir Eventos"
+  },
+  "Admin": {
+    "en": "Admin",
+    "pt": "Admin"
+  },
+  "Manage Users": {
+    "en": "Manage Users",
+    "pt": "Gerir Utilizadores"
+  },
+  "SuperUser": {
+    "en": "SuperUser",
+    "pt": "SuperUtilizador"
+  },
+  "Search": {
+    "en": "Search",
+    "pt": "Pesquisar"
+  },
+  "English": {
+    "en": "English",
+    "pt": "Inglês"
+  },
+  "Portuguese": {
+    "en": "Portuguese",
+    "pt": "Português"
+  },
+  "Personal Area": {
+    "en": "Personal Area",
+    "pt": "Área Pessoal"
+  },
+  "User Information": {
+    "en": "User Information",
+    "pt": "Informação do Utilizador"
+  },
+  "Logout": {
+    "en": "Logout",
+    "pt": "Sair"
+  },
+  "Login": {
+    "en": "Login",
+    "pt": "Entrar"
+  },
+  "Register": {
+    "en": "Register",
+    "pt": "Registar"
+  },
+  "Cart": {
+    "en": "Cart",
+    "pt": "Carrinho"
+  },
+  "Cart is empty": {
+    "en": "Cart is empty",
+    "pt": "O carrinho está vazio"
+  },
+  "Existing Packages": {
+    "en": "Existing Packages",
+    "pt": "Pacotes Existentes"
+  },
+  "Price": {
+    "en": "Price",
+    "pt": "Preço"
+  },
+  "Allow Requests": {
+    "en": "Allow Requests",
+    "pt": "Permitir Pedidos"
+  },
+  "Yes": {
+    "en": "Yes",
+    "pt": "Sim"
+  },
+  "No": {
+    "en": "No",
+    "pt": "Não"
+  },
+  "Event Details": {
+    "en": "Event Details",
+    "pt": "Detalhes do Evento"
+  },
+  "Secondary Photos": {
+    "en": "Secondary Photos",
+    "pt": "Fotos Secundárias"
+  },
+  "Title": {
+    "en": "Title",
+    "pt": "Título"
+  },
+  "Description": {
+    "en": "Description",
+    "pt": "Descrição"
+  },
+  "Location": {
+    "en": "Location",
+    "pt": "Localização"
+  },
+  "Event Date": {
+    "en": "Event Date",
+    "pt": "Data do Evento"
+  },
+  "Expected Attendance": {
+    "en": "Expected Attendance",
+    "pt": "Assistência Esperada"
+  },
+  "Package Details": {
+    "en": "Package Details",
+    "pt": "Detalhes do Pacote"
+  },
+  "Add to Cart": {
+    "en": "Add to Cart",
+    "pt": "Adicionar ao Carrinho"
+  },
+  "Copyright © 2025 INVI-X CONSULTING": {
+    "en": "Copyright © 2025 INVI-X CONSULTING",
+    "pt": "Direitos de Autor © 2025 INVI-X CONSULTING"
+  },
+  "Manage Requests": {
+    "en": "Manage Requests",
+    "pt": "Gerir Pedidos"
+  },
+  "User": {
+    "en": "User",
+    "pt": "Utilizador"
+  },
+  "Request Type": {
+    "en": "Request Type",
+    "pt": "Tipo de Pedido"
+  },
+  "Request Time": {
+    "en": "Request Time",
+    "pt": "Hora do Pedido"
+  },
+  "Action": {
+    "en": "Action",
+    "pt": "Ação"
+  },
+  "Accept": {
+    "en": "Accept",
+    "pt": "Aceitar"
+  },
+  "Deny": {
+    "en": "Deny",
+    "pt": "Recusar"
+  },
+  "Reason for denial": {
+    "en": "Reason for denial",
+    "pt": "Razão para recusar"
+  },
+  "Management User as SuperUser": {
+    "en": "Management User as SuperUser",
+    "pt": "Gestão de Utilizador como SuperUtilizador"
+  },
+  "Users": {
+    "en": "Users",
+    "pt": "Utilizadores"
+  },
+  "Active": {
+    "en": "Active",
+    "pt": "Ativo"
+  },
+  "Buyer": {
+    "en": "Buyer",
+    "pt": "Comprador"
+  },
+  "Seller": {
+    "en": "Seller",
+    "pt": "Vendedor"
+  },
+  "Age": {
+    "en": "Age",
+    "pt": "Idade"
+  },
+  "Management User as Admin": {
+    "en": "Management User as Admin",
+    "pt": "Gestão de Utilizador como Admin"
+  },
+  "Management Events": {
+    "en": "Management Events",
+    "pt": "Gestão de Eventos"
+  },
+  "Create Event": {
+    "en": "Create Event",
+    "pt": "Criar Evento"
+  },
+  "Date": {
+    "en": "Date",
+    "pt": "Data"
+  },
+  "Attendance": {
+    "en": "Attendance",
+    "pt": "Assistência"
+  },
+  "Sign Up": {
+    "en": "Sign Up",
+    "pt": "Inscrever-se"
+  },
+  "Enter name": {
+    "en": "Enter name",
+    "pt": "Digite o nome"
+  },
+  "Email Address": {
+    "en": "Email Address",
+    "pt": "Endereço de Email"
+  },
+  "Enter email": {
+    "en": "Enter email",
+    "pt": "Digite o email"
+  },
+  "Password": {
+    "en": "Password",
+    "pt": "Senha"
+  },
+  "Enter password": {
+    "en": "Enter password",
+    "pt": "Digite a senha"
+  },
+  "Password (Confirm)": {
+    "en": "Password (Confirm)",
+    "pt": "Senha (Confirmar)"
+  },
+  "Confirm password": {
+    "en": "Confirm password",
+    "pt": "Confirme a senha"
+  },
+  "Submit": {
+    "en": "Submit",
+    "pt": "Enviar"
+  },
+  "Photo": {
+    "en": "Photo",
+    "pt": "Foto"
+  },
+  "Edit User": {
+    "en": "Edit User",
+    "pt": "Editar Utilizador"
+  },
+  "Become a Seller": {
+    "en": "Become a Seller",
+    "pt": "Tornar-se um Vendedor"
+  },
+  "Edit Package": {
+    "en": "Edit Package",
+    "pt": "Editar Pacote"
+  },
+  "Change Main Photo": {
+    "en": "Change Main Photo",
+    "pt": "Alterar Foto Principal"
+  },
+  "Secondary Photo": {
+    "en": "Secondary Photo",
+    "pt": "Foto Secundária"
+  },
+  "Title of Package": {
+    "en": "Title of Package",
+    "pt": "Título do Pacote"
+  },
+  "Description of Package": {
+    "en": "Description of Package",
+    "pt": "Descrição do Pacote"
+  },
+  "Price of Package": {
+    "en": "Price of Package",
+    "pt": "Preço do Pacote"
+  },
+  "Delete Package": {
+    "en": "Delete Package",
+    "pt": "Apagar Pacote"
+  },
+  "Event": {
+    "en": "Event",
+    "pt": "Evento"
+  },
+  "Edit Event": {
+    "en": "Edit Event",
+    "pt": "Editar Evento"
+  },
+  "Title of Event": {
+    "en": "Title of Event",
+    "pt": "Título do Evento"
+  },
+  "Description of Event": {
+    "en": "Description of Event",
+    "pt": "Descrição do Evento"
+  },
+  "Place of Event": {
+    "en": "Place of Event",
+    "pt": "Local do Evento"
+  },
+  "Delete Event": {
+    "en": "Delete Event",
+    "pt": "Excluir Evento"
+  },
+  "Packages": {
+    "en": "Packages",
+    "pt": "Pacotes"
+  },
+  "Manage Packages": {
+    "en": "Manage Packages",
+    "pt": "Gerir Pacotes"
+  },
+  "Create Package": {
+    "en": "Create Package",
+    "pt": "Criar Pacote"
+  },
+  "Main Package Photo": {
+    "en": "Main Package Photo",
+    "pt": "Foto Principal do Pacote"
+  },
+  "Secondary Package Photos": {
+    "en": "Secondary Package Photos",
+    "pt": "Fotos Secundárias do Pacote"
+  },
+  "Main Event Photo": {
+    "en": "Main Event Photo",
+    "pt": "Foto Principal do Evento"
+  },
+  "Secondary Event Photos": {
+    "en": "Secondary Event Photos",
+    "pt": "Fotos Secundárias do Evento"
+  },
+  "Image": {
+    "en": "Image",
+    "pt": "Imagem"
+  },
+  "Product": {
+    "en": "Product",
+    "pt": "Produto"
+  },
+  "Remove": {
+    "en": "Remove",
+    "pt": "Remover"
+  },
+  "Buy with": {
+    "en": "Buy with",
+    "pt": "Comprar com"
+  },
+  "Name": {
+    "en": "Name",
+    "pt": "Nome"
+  },
+  "Birthday": {
+    "en": "Birthday",
+    "pt": "Data Nascimento"
+  }
+}

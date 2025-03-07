@@ -8,13 +8,13 @@
                     <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
                         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Event
+                            {{ translate('Event') }}
                         </button>
                         </h5>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                            <div class="card-title">Edit Event</div>
+                            <div class="card-title">{{ translate('Edit Event') }}</div>
                             <hr>
                             <form action="{{ url_for('views.edit_event', event_id=event.ev_id) }}" method="post" enctype="multipart/form-data">
                                 <div class="row gutters-sm">
@@ -29,7 +29,7 @@
                                                             <div class="mt-3">
                                                                 <h4>{{ event.ev_title }}</h4>
                                                             </div>
-                                                            <input type="file" class="form-control form-control-rounded" id="ev_main_photo" name="ev_main_photo" accept="image/*" placeholder="Change Main Photo">
+                                                            <input type="file" class="form-control form-control-rounded" id="ev_main_photo" name="ev_main_photo" accept="image/*" placeholder="{{ translate('Change Main Photo') }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -37,11 +37,11 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <div class="d-flex flex-column align-items-center text-center">
-                                                            <h5 class="card-title">Secondary Photos</h5>
+                                                            <h5 class="card-title">{{ translate('Secondary Photos') }}</h5>
                                                             <div class="row">
                                                                 {% for photo in secondary_photos %}
                                                                 <div class="col-md-4 mb-3">
-                                                                    <img src="{{ url_for('static', filename='photos/01_events/' ~ event.ev_id ~ '/secondary/' ~ photo) }}" alt="Secondary Photo" class="img-thumbnail" style="cursor: pointer;" onclick="showImage(this.src)">
+                                                                    <img src="{{ url_for('static', filename='photos/01_events/' ~ event.ev_id ~ '/secondary/' ~ photo) }}" alt="{{ translate('Secondary Photo') }}" class="img-thumbnail" style="cursor: pointer;" onclick="showImage(this.src)">
                                                                 </div>
                                                                 {% endfor %}
                                                             </div>
@@ -57,49 +57,49 @@
                                                 <!-- Full data -->
                                                 <div class="card mb-3">
                                                     <div class="card-body">
-                                                        <!-- <h5 class="card-title">Edit Event</h5> -->
+                                                        <!-- <h5 class="card-title">{{ translate('Edit Event') }}</h5> -->
                                                         <div class="row">
                                                             <div class="col-sm-3">
-                                                                <label for="title">Title</label>
+                                                                <label for="title">{{ translate('Title') }}</label>
                                                             </div>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-rounded" id="ev_title" placeholder="Title of Event" name="ev_title" value="{{ event.ev_title }}">
+                                                                <input type="text" class="form-control form-control-rounded" id="ev_title" placeholder="{{ translate('Title of Event') }}" name="ev_title" value="{{ event.ev_title }}">
                                                             </div>
                                                         </div>
                                                         <hr>
                                                         <div class="row">
                                                             <div class="col-sm-3">
-                                                                <label for="description">Description</label>
+                                                                <label for="description">{{ translate('Description') }}</label>
                                                             </div>
                                                             <div class="col-sm-9">
-                                                                <textarea class="form-control form-control-rounded" id="ev_description" placeholder="Description of Event" name="ev_description" rows="5" value="">{{ event.ev_description }}</textarea>
+                                                                <textarea class="form-control form-control-rounded" id="ev_description" placeholder="{{ translate('Description of Event') }}" name="ev_description" rows="5" value="">{{ event.ev_description }}</textarea>
                                                             </div>
                                                         </div>  
                                                         <hr>
                                                         <div class="row">
                                                             <div class="col-sm-3">
-                                                                <label for="location">Location</label>
+                                                                <label for="location">{{ translate('Location') }}</label>
                                                             </div>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-rounded" id="ev_location" placeholder="Place of Event" name="ev_location" value="{{ event.ev_location }}">
+                                                                <input type="text" class="form-control form-control-rounded" id="ev_location" placeholder="{{ translate('Place of Event') }}" name="ev_location" value="{{ event.ev_location }}">
                                                             </div>
                                                         </div> 
                                                         <hr>
                                                         <div class="row">
                                                             <div class="col-sm-3">
-                                                                <label for="ev_date">Event Date</label>
+                                                                <label for="ev_date">{{ translate('Event Date') }}</label>
                                                             </div>
                                                             <div class="col-sm-9">
-                                                                <input type="date" class="form-control form-control-rounded" id="ev_date" name="ev_date" value="{{ event.ev_date }}">
+                                                                <input type="date" class="form-control form-control-rounded" id="ev_date" name="ev_date" value="{{ event_date }}">
                                                             </div>
                                                         </div>
                                                         <hr>
                                                         <div class="row">
                                                             <div class="col-sm-3">
-                                                                <label for="ev_expected_attendance">Expected Attendance</label>
+                                                                <label for="ev_expected_attendance">{{ translate('Expected Attendance') }}</label>
                                                             </div>
                                                             <div class="col-sm-9">
-                                                                <input type="number" class="form-control form-control-rounded" id="ev_expected_attendance" placeholder="Expected Attendance" name="ev_expected_attendance" value="{{ event.ev_expected_attendance }}">
+                                                                <input type="number" class="form-control form-control-rounded" id="ev_expected_attendance" placeholder="{{ translate('Expected Attendance') }}" name="ev_expected_attendance" value="{{ event.ev_expected_attendance }}">
                                                             </div>
                                                         </div>
                                                         <hr>
@@ -142,10 +142,10 @@
                                                         <div class="row">
                                                             <div class="col-sm-12 d-flex justify-content-between">
                                                                 <div class="form-group">
-                                                                    <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-save"></i> Edit Event</button>
+                                                                    <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-save"></i> {{ translate('Edit Event') }}</button>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <button type="submit" formaction="{{ url_for('views.delete_event', event_id=event.ev_id) }}" formmethod="post" class="btn btn-danger btn-round px-5"><i class="icon-trash"></i> Delete Event</button>
+                                                                    <button type="submit" formaction="{{ url_for('views.delete_event', event_id=event.ev_id) }}" formmethod="post" class="btn btn-danger btn-round px-5"><i class="icon-trash"></i> {{ translate('Delete Event') }}</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -161,16 +161,16 @@
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
                         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Packages
+                            {{ translate('Packages') }}
                         </button>
                         </h5>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                            <div class="card-title">Manage Packages</div>
+                            <div class="card-title">{{ translate('Manage Packages') }}</div>
                             <hr>
                             <div class="card-title">
-                                <a href="{{ url_for('views.create_package', event_id=event.ev_id) }}" class="btn btn-primary">Create Package</a>
+                                <a href="{{ url_for('views.create_package', event_id=event.ev_id) }}" class="btn btn-primary">{{ translate('Create Package') }}</a>
                             </div>
                             <hr>
                             <!-- show packages of this event -->
@@ -186,8 +186,8 @@
                                             <h5 class="card-title">{{ package.pk_title }}</h5>
                                             <h6 class="card-subtitle">{{ package.pk_description }}</h6>
                                             <p></p>
-                                            <p class="card-text">Price: {{ package.pk_price }}</p>
-                                            <p class="card-text">Allow Requests: {{ package.pk_allow_requests }}</p>
+                                            <p class="card-text">{{ translate('Price') }}: {{ package.pk_price }} €</p>
+                                            <p class="card-text">{{ translate('Allow Requests') }}: {% if package.pk_allow_requests %}{{translate('Yes')}}{% else %}{{translate('No')}}{% endif %}</p>
                                         </div>
                                     </a>
                                 </div>

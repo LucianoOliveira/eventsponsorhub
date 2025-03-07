@@ -6,7 +6,7 @@
             {% if result_packages %}
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title">Existing Packages</div>
+                    <div class="card-title">{{ translate('Existing Packages') }}</div>
                     <hr>
                     <div class="row justify-content-center">
                         {% for package in result_packages %}
@@ -20,8 +20,8 @@
                                     <h5 class="card-title">{{ package.pk_title }}</h5>
                                     <h6 class="card-subtitle">{{ package.pk_description }}</h6>
                                     <p></p>
-                                    <p class="card-text">Price: {{ package.pk_price }} €</p>
-                                    <p class="card-text">Allow Requests: {% if package.pk_allow_requests %}Yes{% else %}No{% endif %}</p>
+                                    <p class="card-text">{{ translate('Price') }}: {{ package.pk_price }} €</p>
+                                    <p class="card-text">{{ translate('Allow Requests') }}: {% if package.pk_allow_requests %}{{translate('Yes')}}{% else %}{{translate('No')}}{% endif %}</p>
                                 </div>
                             </a>
                         </div>
@@ -32,7 +32,7 @@
             {% endif %}
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title">Event Details</div>
+                    <div class="card-title">{{translate('Event Details')}}</div>
                     <hr>
                     <div class="row gutters-sm">
                         <div class="container-fluid">
@@ -53,7 +53,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="d-flex flex-column align-items-center text-center">
-                                                <h5 class="card-title">Secondary Photos</h5>
+                                                <h5 class="card-title">{{translate('Secondary Photos')}}</h5>
                                                 <div class="row">
                                                     {% for photo in secondary_photos %}
                                                     <div class="col-md-4 mb-3">
@@ -74,7 +74,7 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <label for="title">Title</label>
+                                                    <label for="title">{{translate('Title')}}</label>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <p class="">{{ event.ev_title }}</p>
@@ -83,7 +83,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <label for="description">Description</label>
+                                                    <label for="description">{{translate('Description')}}</label>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <p class="">{{ event.ev_description | safe }}</p>
@@ -92,7 +92,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <label for="location">Location</label>
+                                                    <label for="location">{{translate('Location')}}</label>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <p class="">{{ event.ev_location }}</p>
@@ -101,7 +101,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <label for="ev_date">Event Date</label>
+                                                    <label for="ev_date">{{translate('Event Date')}}</label>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <p class="">{{ event.ev_date }}</p>
@@ -110,7 +110,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <label for="ev_expected_attendance">Expected Attendance</label>
+                                                    <label for="ev_expected_attendance">{{translate('Expected Attendance')}}</label>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <p class="">{{ event.ev_expected_attendance }} px</p>

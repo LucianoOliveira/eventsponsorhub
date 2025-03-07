@@ -389,7 +389,8 @@ def edit_event(event_id):
         return redirect(url_for('views.managementEvents'))
     # Format the date to YYYY-MM-DD
     if event.ev_date:
-        event.ev_date = event.ev_date.strftime('%Y-%m-%d')
+        event_date = event.ev_date.strftime('%Y-%m-%d')
+    #     event.ev_date = event.ev_date.strftime('%Y-%m-%d')
     # Fetch secondary photos
     secondary_photos_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static/photos/01_events', str(event.ev_id), 'secondary')
     if os.path.exists(secondary_photos_path):
@@ -399,7 +400,7 @@ def edit_event(event_id):
     # load existing packages
     with db.session.no_autoflush:
         packages = Packages.query.filter_by(pk_event_id=event_id).all()
-    return render_template('edit_event.html', user=current_user, event=event, secondary_photos=secondary_photos, result_packages=packages)
+    return render_template('edit_event.html', user=current_user, event=event, secondary_photos=secondary_photos, result_packages=packages, event_date=event_date)
 
 @views.route('/delete_event/<int:event_id>', methods=['POST'])
 @login_required

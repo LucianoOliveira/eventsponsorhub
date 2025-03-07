@@ -3,15 +3,15 @@
 
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Cart</h5>
+        <h5 class="card-title">{{ translate('Cart') }}</h5>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Remove</th>
+                        <th scope="col">{{ translate('Image') }}</th>
+                        <th scope="col">{{ translate('Product') }}</th>
+                        <th scope="col">{{ translate('Price') }}</th>
+                        <th scope="col">{{ translate('Remove') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +28,7 @@
                             <br>
                             {{ item.description }}
                         </td>
-                        <td style="vertical-align: middle;">Price: {{ item.price }} €</td>
+                        <td style="vertical-align: middle;">{{ translate('Price') }}: {{ item.price }} €</td>
                         <td style="vertical-align: middle;">
                             <form action="{{ url_for('views.remove_from_cart', item_id=item.id) }}" method="post">
                                 <button type="submit" class="btn btn-danger btn-round px-4"><i class="icon-trash"></i></button>
@@ -45,11 +45,11 @@
 
 <form action="{{ url_for('views.checkout') }}" method="post">
     <button type="submit" class="apple-pay-button-with-text apple-pay-button-white-with-text">
-        <span class="text">Buy with</span>
+        <span class="text">{{ translate('Buy with') }}</span>
         <span class="logo"></span>
     </button>
     <button type="submit" class="google-pay-button-with-text google-pay-button-white-with-text">
-        <span class="text">Buy with</span>
+        <span class="text">{{ translate('Buy with') }}</span>
         <span class="logo"></span>
     </button>
 </form>

@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="col-lg-12">
             <div class="card-body">
-                <div class="card-title">Package Details</div>
+                <div class="card-title">{{ translate('Package Details') }}</div>
                 <hr>
                 <div class="row gutters-sm">
                     <div class="container-fluid">
@@ -25,11 +25,11 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex flex-column align-items-center text-center">
-                                            <h5 class="card-title">Secondary Photos</h5>
+                                            <h5 class="card-title">{{ translate('Secondary Photos') }}</h5>
                                             <div class="row">
                                                 {% for photo in secondary_photos %}
                                                 <div class="col-md-4 mb-3">
-                                                    <img src="{{ url_for('static', filename='photos/01_events/' ~ package.pk_event_id ~ '/packages/' ~ package.pk_id ~ '/secondary/' ~ photo) }}" alt="Secondary Photo" class="img-thumbnail" style="cursor: pointer;" onclick="showImage(this.src)">
+                                                    <img src="{{ url_for('static', filename='photos/01_events/' ~ package.pk_event_id ~ '/packages/' ~ package.pk_id ~ '/secondary/' ~ photo) }}" alt="{{ translate('Secondary Photo') }}" class="img-thumbnail" style="cursor: pointer;" onclick="showImage(this.src)">
                                                 </div>
                                                 {% endfor %}
                                             </div>
@@ -46,7 +46,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-3">
-                                                <label for="title">Title</label>
+                                                <label for="title">{{ translate('Title') }}</label>
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="">{{ package.pk_title }}</p>
@@ -55,7 +55,7 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-3">
-                                                <label for="description">Description</label>
+                                                <label for="description">{{ translate('Description') }}</label>
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="">{{ package.pk_description | safe }}</p>
@@ -64,7 +64,7 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-3">
-                                                <label for="price">Price</label>
+                                                <label for="price">{{ translate('Price') }}</label>
                                             </div>
                                             <div class="col-sm-9">
                                                 <p class="">{{ package.pk_price }} €</p>
@@ -73,16 +73,16 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-3">
-                                                <label for="pk_allow_requests">Allow Requests</label>
+                                                <label for="pk_allow_requests">{{ translate('Allow Requests') }}</label>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="">{% if package.pk_allow_requests %}Yes{% else %}No{% endif %}</p>
+                                                <p class="">{% if package.pk_allow_requests %}{{ translate('Yes') }}{% else %}{{ translate('No') }}{% endif %}</p>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <a href="{{ url_for('views.add_to_cart', package_id=package.pk_id) }}" class="btn btn-primary">Add to Cart</a>
+                                                <a href="{{ url_for('views.add_to_cart', package_id=package.pk_id) }}" class="btn btn-primary">{{ translate('Add to Cart') }}</a>
                                             </div>
                                         </div>
                                     </div>

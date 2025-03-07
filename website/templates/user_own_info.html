@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-3">
-                            <label for="user_name">Name</label>
+                            <label for="user_name">{{ translate('Name') }}</label>
                         </div>
                         <div class="col-sm-9">
                             <input type="text" class="form-control form-control-rounded" id="user_name" placeholder="{{ user.us_name }}" name="user_name" value="{{ user.us_name }}">
@@ -34,7 +34,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-sm-3">
-                            <label for="user_email">Email</label>
+                            <label for="user_email">{{ translate('Email') }}</label>
                         </div>
                         <div class="col-sm-9">
                             <input type="email" class="form-control form-control-rounded" id="us_email" placeholder="{{ user.us_email }}" name="user_email" value="{{ user.us_email }}" readonly>
@@ -43,7 +43,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-sm-3">
-                            <label for="user_birthday">Birthday</label>
+                            <label for="user_birthday">{{ translate('Birthday') }}</label>
                         </div>
                         <div class="col-sm-9">
                             <input type="date" class="form-control form-control-rounded" id="user_birthday" placeholder="{{ user.us_birthday }}" name="user_birthday" value="{{ user.us_birthday }}">
@@ -53,7 +53,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label for="user_active">Active</label>
+                                <label for="user_active">{{ translate('Active') }}</label>
                             </div>
                             <div class="col-sm-3 icheck-material-white">
                                 <input type="checkbox" id="user_active" name="user_active" {% if user.us_is_active %}checked{% endif %}>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="row" style="display: none;">
                             <div class="col-sm-3">
-                                <label for="user_buyer">Buyer</label>
+                                <label for="user_buyer">{{ translate('Buyer') }}</label>
                             </div>
                             <div class="col-sm-3 icheck-material-white">
                                 <input type="checkbox" id="user_buyer" name="user_buyer" {% if user.us_is_buyer %}checked{% endif %}>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label for="user_buyer2">Buyer</label>
+                                <label for="user_buyer2">{{ translate('Buyer') }}</label>
                             </div>
                             <div class="col-sm-3 icheck-material-white">
                                 <input type="checkbox" id="user_buyer2" name="user_buyer2" {% if user.us_is_buyer %}checked{% endif %} disabled>
@@ -80,7 +80,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label for="user_seller">Seller</label>
+                                <label for="user_seller">{{ translate('Seller') }}</label>
                             </div>
                             <div class="col-sm-3 icheck-material-white">
                                 <input type="checkbox" id="user_seller" name="user_seller" {% if user.us_is_seller %}checked{% endif %}>
@@ -89,7 +89,7 @@
                         </div>
                         <div class="row"  style="display: none;">
                             <div class="col-sm-3">
-                                <label for="user_admin">Admin</label>
+                                <label for="user_admin">{{ translate('Admin') }}</label>
                             </div>
                             <div class="col-sm-3 icheck-material-white">
                                 <input type="checkbox" id="user_admin" name="user_admin" {% if user.us_is_admin %}checked{% endif %}>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="row"  style="display: none;">
                             <div class="col-sm-3">
-                                <label for="user_superuser">SuperUser</label>
+                                <label for="user_superuser">{{ translate('SuperUser') }}</label>
                             </div>
                             <div class="col-sm-3 icheck-material-white">
                                 <input type="checkbox" id="user_superuser" name="user_superuser" {% if user.us_is_superuser %}checked{% endif %}>
@@ -118,12 +118,12 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-light btn-round px-3"><i class="icon-save"></i> Edit User</button>
+                                <button type="submit" class="btn btn-light btn-round px-3"><i class="icon-save"></i> {{ translate('Edit User') }}</button>
                             </div>
                         </div>
                         {% if not user.us_is_seller and not user.us_is_superuser %}
                         <div class="form-group">
-                            <button type="submit" formaction="{{ url_for('views.request_seller') }}" formmethod="post" class="btn btn-secondary btn-round px-3"> Become a Seller</button>
+                            <button type="submit" formaction="{{ url_for('views.request_seller') }}" formmethod="post" class="btn btn-secondary btn-round px-3"> {{ translate('Become a Seller') }}</button>
                         </div>                       
                         {% endif %}
                     </div>

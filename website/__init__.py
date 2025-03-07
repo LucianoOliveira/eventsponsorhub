@@ -1,16 +1,41 @@
-from flask import Flask
+from flask import Flask, request, g
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 import re
 from flask_migrate import Migrate
+import json
+import os
 
 db = SQLAlchemy()
 DB_NAME = "eventsponsorhub.db"
 migrate = Migrate()
 
+app = Flask(__name__)
+
+# Configure available languages
+LANGUAGES = {
+    'en': 'English',
+    'pt': 'Portuguese'
+}
+
+def load_translations(lang):
+    translations_path = os.path.join(app.root_path, 'translations', f'{lang}.json')
+    if not os.path.exists(translations_path):
+        translations_path = os.path.join(app.root_path, '..', 'translations', 'translations.json')
+    with open(translations_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+@app.before_request
+def before_request():
+    lang = request.cookies.get('lang')
+    if lang:
+        g.lang = lang
+    else:
+        g.lang = 'en'  # default to English
+    g.translations = load_translations(g.lang)
+
 def create_app():
-    app = Flask(__name__)
     app.config['SECRET_KEY'] = 'Hello From Hell! :D'
 
     from .config import Config
@@ -64,3 +89,8 @@ def create_app():
     app.jinja_env.globals.update(display_short_name=display_short_name)
 
     return app
+
+def translate(text):
+    return g.translations.get(text, {}).get(g.lang, text)
+
+app.jinja_env.globals.update(translate=translate)

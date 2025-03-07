@@ -4,11 +4,11 @@
 
 <!-- testing -->
 <div class="row">
-    <h5 class="card-title">Management Events</h5>
+    <h5 class="card-title">{{ translate('Management Events') }}</h5>
 </div>
 <div class="row">
     {% if user.us_is_seller %}
-    <a href="{{ url_for('views.create_event') }}" class="btn btn-primary">Create Event</a>
+    <a href="{{ url_for('views.create_event') }}" class="btn btn-primary">{{ translate('Create Event') }}</a>
     {% endif %}
 </div>
 <br>
@@ -29,8 +29,8 @@
             <h5 class="card-title">{{ event.ev_title }}</h5>
             <h6 class="card-subtitle">{{ event.ev_location }}</h6>
             <p></p>
-            <p class="card-text">Date: {{ event.ev_date.strftime('%Y-%m-%d') if event.ev_date else 'N/A' }}</p>
-            <p class="card-text">Attendance: {{ event.ev_expected_attendance }}</p>
+            <p class="card-text">{{ translate('Date') }}: {{ event.ev_date.strftime('%Y-%m-%d') if event.ev_date else 'N/A' }}</p>
+            <p class="card-text">{{ translate('Attendance') }}: {{ event.ev_expected_attendance }}</p>
         </div>
     </a>
     </div>

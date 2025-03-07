@@ -5,37 +5,37 @@
         <!-- Full data -->
         <div class="card mb-3">
             <div class="card-body">
-                <h5 class="card-title">Create Package</h5>
+                <h5 class="card-title">{{ translate('Create Package') }}</h5>
                 <div class="row">
                     <div class="col-sm-3">
-                        <label for="title">Title</label>
+                        <label for="title">{{ translate('Title') }}</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-rounded" id="title" placeholder="Title of Package" name="title" required>
+                        <input type="text" class="form-control form-control-rounded" id="title" placeholder="{{ translate('Title of Package') }}" name="title" required>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-sm-3">
-                        <label for="description">Description</label>
+                        <label for="description">{{ translate('Description') }}</label>
                     </div>
                     <div class="col-sm-9">
-                        <textarea class="form-control form-control-rounded" id="description" placeholder="Description of Package" name="description" rows="5" required></textarea>
+                        <textarea class="form-control form-control-rounded" id="description" placeholder="{{ translate('Description of Package') }}" name="description" rows="5" required></textarea>
                     </div>
                 </div>  
                 <hr>
                 <div class="row">
                     <div class="col-sm-3">
-                        <label for="price">Price</label>
+                        <label for="price">{{ translate('Price') }}</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control form-control-rounded" id="price" placeholder="Price of Package" name="price" step="0.01" required>
+                        <input type="number" class="form-control form-control-rounded" id="price" placeholder="{{ translate('Price of Package') }}" name="price" step="0.01" required>
                     </div>
                 </div> 
                 <hr>
                 <div class="row">
                     <div class="col-sm-3">
-                        <label for="pk_main_photo">Main Package Photo</label>
+                        <label for="pk_main_photo">{{ translate('Main Package Photo') }}</label>
                     </div>
                     <div class="col-sm-9">
                         <input type="file" class="form-control form-control-rounded" id="pk_main_photo" name="pk_main_photo" accept="image/*">
@@ -44,7 +44,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-sm-3">
-                        <label for="pk_secondary_photos">Secondary Package Photos</label>
+                        <label for="pk_secondary_photos">{{ translate('Secondary Package Photos') }}</label>
                     </div>
                     <div class="col-sm-9">
                         <input type="file" class="form-control form-control-rounded" id="pk_secondary_photos" name="pk_secondary_photos" multiple accept="image/*">
@@ -53,7 +53,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-sm-3">
-                        <label for="allow_requests">Allow Requests</label>
+                        <label for="allow_requests">{{ translate('Allow Requests') }}</label>
                     </div>
                     <div class="col-sm-9">
                         <input type="checkbox" id="allow_requests" name="allow_requests">
@@ -63,7 +63,7 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-save"></i> Create Package</button>
+                            <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-save"></i> {{ translate('Create Package') }}</button>
                         </div>
                     </div>
                 </div>

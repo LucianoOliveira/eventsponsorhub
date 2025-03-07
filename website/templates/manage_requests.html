@@ -1,15 +1,15 @@
 {% extends "base.html" %}
-{% block title %}Manage Requests{% endblock %}
+{% block title %}{{ translate('Manage Requests') }}{% endblock %}
 {% block content %}
 <div class="container mt-5">
-    <h2>Manage Requests</h2>
+    <h2>{{ translate('Manage Requests') }}</h2>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>User</th>
-                <th>Request Type</th>
-                <th>Request Time</th>
-                <th>Action</th>
+                <th>{{ translate('User') }}</th>
+                <th>{{ translate('Request Type') }}</th>
+                <th>{{ translate('Request Time') }}</th>
+                <th>{{ translate('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -20,9 +20,9 @@
                 <td>{{ request.ur_request_time }}</td>
                 <td>
                     <form action="{{ url_for('views.respond_request', request_id=request.ur_id) }}" method="post">
-                        <button type="submit" name="response" value="accept" class="btn btn-success">Accept</button>
-                        <button type="submit" name="response" value="deny" class="btn btn-danger">Deny</button>
-                        <input type="text" name="reason" placeholder="Reason for denial" class="form-control mt-2">
+                        <button type="submit" name="response" value="accept" class="btn btn-success">{{ translate('Accept') }}</button>
+                        <button type="submit" name="response" value="deny" class="btn btn-danger">{{ translate('Deny') }}</button>
+                        <input type="text" name="reason" placeholder="{{ translate('Reason for denial') }}" class="form-control mt-2">
                     </form>
                 </td>
             </tr>

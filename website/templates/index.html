@@ -3,7 +3,7 @@
 
 <!-- testing -->
 <div class="row">
-    <h5 class="card-title">Events</h5>    
+    <h5 class="card-title">{{ translate('Events') }}</h5>    
 </div>
 <!-- end testing -->
 
@@ -20,8 +20,8 @@
           <h5 class="card-title">{{ event.ev_title }}</h5>
           <h6 class="card-subtitle">{{ event.ev_location }}</h6>
           <p></p>
-          <p class="card-text">Date: {{ event.ev_date.strftime('%Y-%m-%d') if event.ev_date else 'N/A' }}</p>
-          <p class="card-text">Attendance: {{ event.ev_expected_attendance }}</p>
+          <p class="card-text">{{ translate('Date') }}: {{ event.ev_date.strftime('%Y-%m-%d') if event.ev_date else 'N/A' }}</p>
+          <p class="card-text">{{ translate('Attendance') }}: {{ event.ev_expected_attendance }}</p>
           <!-- <p class="card-text">{{ event.ev_sold_package_count }} / {{ event.ev_package_count }}</p> -->
           <!-- <div class="icon-block">
             <a href="javascript:void();"><i class="fa fa-facebook bg-facebook text-white"></i></a>

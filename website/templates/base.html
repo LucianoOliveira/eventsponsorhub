@@ -66,33 +66,33 @@
         {% endif %}
       </div>
       <ul class="sidebar-menu do-nicescrol">
-        <li class="sidebar-header">Navigation</li>
+        <li class="sidebar-header">{{ translate('Navigation') }}</li>
         <li>
           <a href="/">
-            <i class="zmdi zmdi-grid"></i> <span>Events</span>
+            <i class="zmdi zmdi-grid"></i> <span>{{ translate('Events') }}</span>
           </a>
         </li>
         {% if user.is_authenticated %} 
-        <li class="sidebar-header">Management</li>
+        <li class="sidebar-header">{{ translate('Management') }}</li>
           <li>
             <a href="/managementEvents">
-              <i class="zmdi zmdi-grid"></i> <span>Manage Events</span>
+              <i class="zmdi zmdi-grid"></i> <span>{{ translate('Manage Events') }}</span>
             </a>
           </li>
         {% endif %}
         {% if user.is_authenticated and user.us_is_admin==1 and user.us_is_superuser==0%} 
-        <li class="sidebar-header">Admin</li>
+        <li class="sidebar-header">{{ translate('Admin') }}</li>
           <li>
             <a href="/managementUsersAdmin">
-              <i class="zmdi zmdi-grid"></i> <span>Manage Users</span>
+              <i class="zmdi zmdi-grid"></i> <span>{{ translate('Manage Users') }}</span>
             </a>
           </li>
         {% endif %}
         {% if user.is_authenticated and user.us_is_superuser==1 %} 
-        <li class="sidebar-header">SuperUser</li>
+        <li class="sidebar-header">{{ translate('SuperUser') }}</li>
           <li>
             <a href="/managementUsersSU">
-              <i class="zmdi zmdi-grid"></i> <span>Manage Users</span>
+              <i class="zmdi zmdi-grid"></i> <span>{{ translate('Manage Users') }}</span>
             </a>
           </li>
         {% endif %}
@@ -113,19 +113,26 @@
         </li>
         <li class="nav-item">
           <form class="search-bar" action="/search" method="get">
-            <input type="text" name="query" class="form-control form-control-rounded" placeholder="Search">
+            <input type="text" name="query" class="form-control form-control-rounded" placeholder="{{ translate('Search') }}">
             <a href="javascript:void();"><i class="icon-magnifier"></i></a>
           </form>
         </li>
       </ul>
           
       <ul class="navbar-nav align-items-center right-nav-link">
+        <li class="nav-item language">
+          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
+          <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item" onclick="changeLanguage('en')"> <i class="flag-icon flag-icon-gb mr-2"></i> {{ translate('English') }}</li>
+              <li class="dropdown-item" onclick="changeLanguage('pt')"> <i class="flag-icon flag-icon-pt mr-2"></i> {{ translate('Portuguese') }}</li>
+            </ul>
+        </li>
         <li class="nav-item">
           <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
             {% if user.is_authenticated  %}
               <span class="user-profile"><img src="{{ url_for('views.display_user_image', userID=user.us_id ) }}" class="img-circle" alt="{{ user.us_name }}"><div class="user-text">{{ user.us_name }}</div></span>
             {% else %}
-            <span class="user-profile"><img src="{{ url_for('views.display_user_image', userID=0 ) }}" class="img-circle" alt="user avatar"><div class="user-text">Personal Area</div></span>
+            <span class="user-profile"><img src="{{ url_for('views.display_user_image', userID=0 ) }}" class="img-circle" alt="user avatar"><div class="user-text">{{ translate('Personal Area') }}</div></span>
             {% endif %}
           </a>
           <ul class="dropdown-menu dropdown-menu-right">
@@ -152,14 +159,14 @@
             </li>
             {% if user.is_authenticated %}
             <li class="dropdown-divider"></li>
-            <a id="userOwnInfo" href="/userOwnInfo"><li class="dropdown-item"><i class="zmdi zmdi-face mr-2"></i> User Information</li></a>
+            <a id="userOwnInfo" href="/userOwnInfo"><li class="dropdown-item"><i class="zmdi zmdi-face mr-2"></i> {{ translate('User Information') }}</li></a>
             <li class="dropdown-divider"></li>
-            <a id="logout" href="/logout"><li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li></a>
+            <a id="logout" href="/logout"><li class="dropdown-item"><i class="icon-power mr-2"></i> {{ translate('Logout') }}</li></a>
             {% else %}
             <li class="dropdown-divider"></li>
-            <a id="login" href="/login"><li class="dropdown-item"><i class="zmdi zmdi-lock mr-2"></i> Login</li></a>
+            <a id="login" href="/login"><li class="dropdown-item"><i class="zmdi zmdi-lock mr-2"></i> {{ translate('Login') }}</li></a>
             <li class="dropdown-divider"></li>
-            <a id="signUp" href="/sign-up"><li class="dropdown-item"><i class="zmdi zmdi-account-circle mr-2"></i> Register</li></a>
+            <a id="signUp" href="/sign-up"><li class="dropdown-item"><i class="zmdi zmdi-account-circle mr-2"></i> {{ translate('Register') }}</li></a>
             {% endif %}
           </ul>
         </li>
@@ -171,7 +178,7 @@
                   <span class="badge-pill badge-danger user-cart-badge">{{ session['cart']|length }}</span>
                 {% endif %}
               </i>
-              <div class="user-text">Cart</div>
+              <div class="user-text">{{ translate('Cart') }}</div>
             </div>
           </a>
           <ul class="dropdown-menu dropdown-menu-right">
@@ -180,7 +187,7 @@
                 <li class="dropdown-item"><a href="/cart">{{ item.title }}</a></li>
               {% endfor %}
             {% else %}
-              <li class="dropdown-item">Cart is empty</li>
+              <li class="dropdown-item">{{ translate('Cart is empty') }}</li>
             {% endif %}
           </ul>
         </li>
@@ -244,7 +251,7 @@
       <footer class="footer">
         <div class="container">
           <div class="text-center">
-            Copyright © 2025 INVI-X CONSULTING
+            {{ translate('Copyright © 2025 INVI-X CONSULTING') }}
           </div>
         </div>
       </footer>
@@ -302,6 +309,15 @@
       $(document.body).on("click", "tr[data-href]", function () {
           window.location.href = this.dataset.href;
       });
+    </script>
+
+    <script>
+      function changeLanguage(lang) {
+        document.cookie = `lang=${lang}; path=/`;
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', lang);
+        window.location.href = url.toString();
+      }
     </script>
   </body>
 </html>
