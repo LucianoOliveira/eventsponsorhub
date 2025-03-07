@@ -51,4 +51,19 @@ class Packages(db.Model):
     event = db.relationship('Events', backref=db.backref('packages', lazy=True))
     user = db.relationship('Users', backref=db.backref('packages', lazy=True))
 
+class UserRequests(db.Model):
+    __tablename__ = 'tb_user_requests'
+    ur_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ur_user_id = db.Column(db.Integer, db.ForeignKey('tb_users.us_id'), nullable=False)
+    ur_request_type = db.Column(db.String(50), nullable=False)
+    ur_request_time = db.Column(db.DateTime, default=func.now())
+    ur_responded = db.Column(db.Boolean, default=False)
+    ur_accepted = db.Column(db.Boolean, nullable=True)
+    ur_response_time = db.Column(db.DateTime, nullable=True)
+    ur_response_user_id = db.Column(db.Integer, db.ForeignKey('tb_users.us_id'), nullable=True)
+    ur_response_reason = db.Column(db.String(500), nullable=True)
+
+    user = db.relationship('Users', foreign_keys=[ur_user_id], backref=db.backref('requests', lazy=True))
+    response_user = db.relationship('Users', foreign_keys=[ur_response_user_id], backref=db.backref('responses', lazy=True))
+
 

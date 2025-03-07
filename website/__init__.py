@@ -3,9 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 import re
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 DB_NAME = "eventsponsorhub.db"
+migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
@@ -32,6 +34,8 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+
+    migrate.init_app(app, db)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'

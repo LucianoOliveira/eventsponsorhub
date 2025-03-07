@@ -45,7 +45,7 @@
     <!-- jquery -->
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   </head>
-  <body class="bg-theme bg-theme3">
+  <body class="bg-theme bg-theme16">
 
     <!-- Start wrapper-->
     <div id="wrapper">
@@ -184,6 +184,14 @@
             {% endif %}
           </ul>
         </li>
+        {% if user.is_authenticated and user.us_is_superuser and unresponded_requests_count>0%}
+        <li class="nav-item">
+          <a class="nav-link" href="/manage_requests">
+            <i class="fa fa-bell  user-requests"></i>
+            <span class="badge-pill badge-danger user-requests-badge">{{ unresponded_requests_count }}</span>
+          </a>
+        </li>
+        {% endif %}
       </ul>
     </nav>
     </header>

@@ -118,9 +118,14 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-save"></i> Edit User</button>
+                                <button type="submit" class="btn btn-light btn-round px-3"><i class="icon-save"></i> Edit User</button>
                             </div>
                         </div>
+                        {% if not user.us_is_seller and not user.us_is_superuser %}
+                        <div class="form-group">
+                            <button type="submit" formaction="{{ url_for('views.request_seller') }}" formmethod="post" class="btn btn-secondary btn-round px-3"> Become a Seller</button>
+                        </div>                       
+                        {% endif %}
                     </div>
                 </div>
             </div>

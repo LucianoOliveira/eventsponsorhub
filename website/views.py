@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for, Flask, session, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_required, current_user
-from .models import Users, Events, Packages
+from .models import Users, Events, Packages, UserRequests
 from . import db
 import json, os, threading
 from datetime import datetime, date, timedelta
@@ -607,3 +607,56 @@ def search():
         'events': [{'id': event.ev_id, 'title': event.ev_title} for event in events],
         'packages': [{'id': package.pk_id, 'title': package.pk_title} for package in packages]
     })
+
+@views.route('/request_seller', methods=['POST'])
+@login_required
+def request_seller():
+    if not current_user.us_is_seller:
+        new_request = UserRequests(
+            ur_user_id=current_user.us_id,
+            ur_request_type='seller'
+        )
+        db.session.add(new_request)
+        db.session.commit()
+        flash('Your request to become a seller has been submitted.', 'success')
+    else:
+        flash('You are already a seller.', 'info')
+    return redirect(url_for('views.userOwnInfo'))
+
+@views.route('/manage_requests', methods=['GET', 'POST'])
+@login_required
+def manage_requests():
+    if not current_user.us_is_superuser:
+        flash('Access denied.', 'error')
+        return redirect(url_for('views.home'))
+    requests = UserRequests.query.filter_by(ur_responded=False).all()
+    return render_template('manage_requests.html', user=current_user, requests=requests)
+
+@views.route('/respond_request/<int:request_id>', methods=['POST'])
+@login_required
+def respond_request(request_id):
+    if not current_user.us_is_superuser:
+        flash('Access denied.', 'error')
+        return redirect(url_for('views.home'))
+    user_request = UserRequests.query.get_or_404(request_id)
+    response = request.form.get('response')
+    reason = request.form.get('reason')
+    user_request.ur_responded = True
+    user_request.ur_accepted = (response == 'accept')
+    user_request.ur_response_time = func.now()
+    user_request.ur_response_user_id = current_user.us_id
+    user_request.ur_response_reason = reason
+    if response == 'accept' and user_request.ur_request_type == 'seller':
+        user = Users.query.get(user_request.ur_user_id)
+        user.us_is_seller = 1
+    db.session.commit()
+    flash('Request has been responded to.', 'success')
+    return redirect(url_for('views.manage_requests'))
+
+@views.context_processor
+def inject_unresponded_requests_count():
+    if current_user.is_authenticated and current_user.us_is_superuser:
+        unresponded_requests_count = UserRequests.query.filter_by(ur_responded=False).count()
+    else:
+        unresponded_requests_count = 0
+    return dict(unresponded_requests_count=unresponded_requests_count)
