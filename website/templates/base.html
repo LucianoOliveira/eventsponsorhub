@@ -111,14 +111,25 @@
             <i class="icon-menu menu-icon"></i>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item d-block d-md-none">
+          <a class="nav-link" data-toggle="collapse" href="#searchBar" role="button" aria-expanded="false" aria-controls="searchBar">
+            <i class="icon-magnifier"></i>
+          </a>
+        </li>
+        <li class="nav-item d-none d-md-block">
           <form class="search-bar" action="/search" method="get">
             <input type="text" name="query" class="form-control form-control-rounded" placeholder="{{ translate('Search') }}">
             <a href="javascript:void();"><i class="icon-magnifier"></i></a>
           </form>
         </li>
       </ul>
-          
+      <div class="collapse" id="searchBar">
+        <form class="search-bar" action="/search" method="get">
+          <input type="text" name="query" class="form-control form-control-rounded" placeholder="{{ translate('Search') }}">
+          <a href="javascript:void();"><i class="icon-magnifier"></i></a>
+        </form>
+      </div>
+
       <ul class="navbar-nav align-items-center right-nav-link">
         <li class="nav-item language">
           <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
@@ -318,6 +329,17 @@
         url.searchParams.set('lang', lang);
         window.location.href = url.toString();
       }
+    </script>
+
+    <script>
+      document.querySelector('.toggle-search').addEventListener('click', function() {
+        var searchBar = document.querySelector('.search-bar');
+        if (searchBar.style.display === 'none' || searchBar.style.display === '') {
+          searchBar.style.display = 'block';
+        } else {
+          searchBar.style.display = 'none';
+        }
+      });
     </script>
   </body>
 </html>
