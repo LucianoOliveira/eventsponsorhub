@@ -13,10 +13,10 @@
     <div class="col-10 col-sm-5 col-md-4 col-lg-3">
       <a href="{{ url_for('views.detail_event', event_id=event.ev_id) }}" class="card profile-card-2">
         <div class="card-img-block">
-          <img class="img-fluid" src="{{ url_for('views.display_event_main_image', eventID=event.ev_id ) }}" alt="Card image cap">
+          <img class="img-fluid" src="{{ url_for('views.display_event_second_image', eventID=event.ev_id ) }}" alt="Card image cap">
         </div>
         <div class="card-body pt-5">
-          <img src="{{ url_for('views.display_user_image', userID=event.ev_user_id ) }}" alt="profile-image" class="profile">
+          <img src="{{ url_for('views.display_event_main_image', eventID=event.ev_id ) }}" alt="profile-image" class="profile">
           <h5 class="card-title">{{ event.ev_title }}</h5>
           <h6 class="card-subtitle">{{ event.ev_location }}</h6>
           <p></p>

@@ -256,6 +256,18 @@ def display_event_main_image(eventID):
         return send_file(img_io, mimetype='image/jpeg')
     else:
         return redirect(url_for('static', filename='photos/01_events/nophoto.jpg'), code=301)
+    
+@views.route('/display_event_second_image/<eventID>')
+def display_event_second_image(eventID):
+    filePath = str(os.path.abspath(os.path.dirname(__file__)))+'/static/photos/01_events/'+str(eventID)+'/secondary/1.jpg'
+    if os.path.isfile(filePath):
+        img = crop_image_in_memory(filePath)
+        img_io = BytesIO()
+        img.save(img_io, 'JPEG')
+        img_io.seek(0)
+        return send_file(img_io, mimetype='image/jpeg')
+    else:
+        return redirect(url_for('static', filename='photos/01_events/nophoto.jpg'), code=301)
 
 @views.route('/display_package_main_image/<int:eventID>/<int:packageID>')
 def display_package_main_image(eventID, packageID):
