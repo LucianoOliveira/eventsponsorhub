@@ -3648,9 +3648,9 @@ table.grid td {
   	display: none;
   }
 
-  .nav-item.language{
+  /* .nav-item.language{
 	display: none;
-  }
+  } */
 
   .right-nav-link a.nav-link{
     padding-right: .0rem !important;
