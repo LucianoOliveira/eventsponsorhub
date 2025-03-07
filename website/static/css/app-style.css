@@ -724,7 +724,7 @@ body.bg-pink {
 .search-bar a i{
 	position: absolute;
     top: 8px;
-    right: 15px;
+    right: 6%;
     color: #fff;
 	 font-size: 16px;
 }
